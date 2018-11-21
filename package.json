@@ -1,6 +1,6 @@
 {
   "name": "flips-wasm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WebAssembly wrapper for Floating IPS",
   "main": "lib/flips.js",
   "directories": {
@@ -11,7 +11,7 @@
     "build:bps": "emcc -O3 -s MODULARIZE=1 -s WASM=1 -I Flips --bind src/bps.cpp Flips/{libbps,crc32}.cpp -o src/wasm/bps.js",
     "build:ips": "emcc -O3 -s MODULARIZE=1 -s WASM=1 -I Flips --bind src/ips.cpp Flips/{libips,crc32}.cpp -o src/wasm/ips.js",
     "build:ups": "emcc -O3 -s MODULARIZE=1 -s WASM=1 -I Flips --bind src/ups.cpp Flips/{libups,crc32}.cpp -o src/wasm/ups.js",
-    "build:js": "rm -rf lib && babel src -d lib --copy-files",
+    "build:js": "rm -rf lib && babel src -d lib && cp src/wasm/*.wasm lib/wasm/.",
     "build": "npm run clean:wasm && npm run build:bps && npm run build:ips && npm run build:ups && npm run build:js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

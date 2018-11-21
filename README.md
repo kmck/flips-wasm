@@ -3,6 +3,18 @@
 This is a [WebAssembly] version of Alcaro's excellent [Floating IPS][Flips] created with
 [Emscripten] for use in JavaScript projects.
 
+## Installation
+
+```bash
+npm install flips-wasm
+```
+
+Or using Yarn:
+
+```bash
+yarn add flips-wasm
+```
+
 ## Usage
 
 In Node.js:
@@ -29,6 +41,17 @@ import {
   upsCreate,
   upsApply,
 } from 'flips-wasm';
+```
+
+The Wasm modules are loaded asynchronously, so you may want to use the corresponding `Promise`
+versions of the functions in your code. The Promise resolves with the result of the Flips function.
+
+```js
+import { bpsCreatePromise } from 'flips-wasm';
+
+bpsCreatePromise(sourceFile, targetFile).then(patchFile => {
+  // ...write to file
+});
 ```
 
 # Building
